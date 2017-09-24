@@ -1,4 +1,4 @@
-@include('partial\top');
+@include('partial.top');
 
 @if(!empty($info))
     <div class="alert alert-success">
@@ -25,10 +25,5 @@
 
 </div>
 
-
 </body>
 </html>
-
-<?php
-
-?>

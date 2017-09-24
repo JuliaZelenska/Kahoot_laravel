@@ -1,6 +1,3 @@
-<head>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}" type="text/css">
-</head>
 <?php
 
 /*
@@ -15,13 +12,22 @@
 */
 
 Route::get('/', function () {
-    return view('create_quiz');
+    return view('create_quiz')->name('homepage');
 });
+
 Route::get('/test', function () {
     return view('welcome1');
 });
+
 Route::get('/quiz', function () {
     return view('create_quiz');
 });
 
-Route::post('/insert', 'Controller@insert');
+Route::get('/edit', [
+    'as'=>'edit',
+    'uses'=>'Controller@getQuestion',
+]);
+
+Route::post('/edit', 'Controller@postUpdate');
+
+Route::post('/insert', 'Controller@postInsert');
