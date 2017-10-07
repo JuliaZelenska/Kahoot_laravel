@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('create_quiz')->name('homepage');
+    return view('create_quiz');
 });
 
 Route::get('/test', function () {
@@ -31,3 +31,7 @@ Route::get('/edit', [
 Route::post('/edit', 'Controller@postUpdate');
 
 Route::post('/insert', 'Controller@postInsert');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
