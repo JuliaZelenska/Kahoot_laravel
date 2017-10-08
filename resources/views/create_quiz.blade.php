@@ -1,4 +1,4 @@
-@include('partial.top');
+@include('partial.top')
 
 @if(!empty($info))
     <div class="alert alert-success">
@@ -7,7 +7,7 @@
 @endif
 
 <div class="col-xs-8 col-xs-offset-2">
-    <form action="/insert" method="post" id="forms">
+    <form action="{{route('post-create-next-question')}}" method="post" id="forms">
         <span>Pytanie:</span> <input class="form-control" type="text" name="question" placeholder="question"><br>
         <span>Poprawna odpowiedź:</span><input class="form-control has-success" type="text" name="true"
                                                placeholder="answer1"><br>
@@ -19,11 +19,9 @@
                                              placeholder="answer4"><br>
         {{csrf_field()}}
         <button class="btn btn-default" type="submit">Następne pynanie</button>
-        <button class="btn btn-default" type="submit">Zagraj</button>
     </form>
-
-
+    <form action="{{route('post-save-quiz')}}">
+        <button class="btn btn-default" type="submit">Zapisz</button>
+    </form>
 </div>
 
-</body>
-</html>

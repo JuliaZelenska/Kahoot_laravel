@@ -13,15 +13,21 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function postInsert(Request $request)
+    public function postSaveQuestion(Request $request)
     {
+        $name = $request->session()->get('quiz-name')[0];
         $question = $request->input('question');
         $true = $request->input('true');
         $false1 = $request->input('false1');
         $false2 = $request->input('false2');
         $false3 = $request->input('false3');
 
+        if ('' === $name) {
+            return redirect()->route('create-quiz-name');
+        }
+
         $data = [
+            'name' => $name,
             'question' => $question,
             'true' => $true,
             'false1' => $false1,
@@ -78,4 +84,53 @@ class Controller extends BaseController
 
         return view('edit_quiz', ['question' => $questionResult]);
     }
+
+    public function getCreateQuiz(Request $request)
+    {
+        $quizName = $request->session()->get('quiz-name', '');
+
+        if ('' === $quizName) {
+            return redirect()->route('create-quiz-name');
+        }
+
+        return view('create_quiz');
+    }
+
+    public function getQuizList()
+    {
+        return view('quiz_list');
+    }
+
+    public function getPlayQuiz()
+    {
+        return view('play_quiz');
+    }
+
+    public function getCreateQuizName()
+    {
+        return view('name_quiz');
+    }
+
+    public function postSaveQuiz(Request $request)
+    {
+        $request->session()->remove('quiz-name');
+
+        return redirect()->route('quiz-list');
+    }
+
+    public function postQuizName(Request $request)
+    {
+        $quizName = $request->input('quiz-name');
+        $request->session()->push('quiz-name', $quizName);
+
+        return redirect()->route('create-quiz');
+
+    }
+
+    public function test(Request $request)
+    {
+        $data = $request->session()->all();
+        dump($data);
+    }
+
 }

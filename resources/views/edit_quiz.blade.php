@@ -1,4 +1,4 @@
-@include('partial.top');
+@include('partial.top')
 
 @if(!empty($info))
     <div class="alert alert-success">
@@ -27,16 +27,15 @@
         <button class="btn btn-default" type="submit">Zapisz</button>
     </form>
         <form action="/edit" method="get">
+            {{csrf_field()}}
             <input type="hidden" value="{{$question->id-1}}" name="id">
             <button class="btn btn-default" type="submit">Poprzednie pynanie</button>
         </form>
         <form action="/edit" method="get">
+            {{csrf_field()}}
             <input type="hidden" value="{{$question->id+1}}" name="id">
             <button class="btn btn-default" type="submit">Następne pynanie</button>
         </form>
 
 
 </div>
-
-</body>
-</html>

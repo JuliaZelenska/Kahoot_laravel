@@ -14,6 +14,7 @@ class Question extends Model
 {
 
     protected $fillable = [
+        'name',
         'question',
         'true',
         'false1',
