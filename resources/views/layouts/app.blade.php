@@ -17,16 +17,18 @@
     <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <body>
+<canvas id="c"></canvas>
 <div>
     @include('partial.top')
-
     <div class="content">
         @yield('content')
+
     </div>
 
 </div>
 
 <!-- JavaScript -->
+@yield('javascript')
 <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

@@ -2,6 +2,6 @@
 
 @section('content')
 
-    play_quiz
+    @each('partial.question', $questions, 'question')
 
 @endsection('content')

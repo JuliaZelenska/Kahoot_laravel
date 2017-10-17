@@ -182,6 +182,11 @@ return [
        */
         Propaganistas\LaravelPhone\PhoneServiceProvider::class,
 
+        /*
+       * Quiz Service Provider
+       */
+        App\Providers\QuizServiceProvider::class,
+
     ],
 
     /*

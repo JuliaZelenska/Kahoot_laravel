@@ -16,3 +16,10 @@
 <body>
 
 @include('partial.navbar')
+
+
+@if(!empty($info))
+    <div class="alert alert-success">
+        <strong>Success!</strong> {{ $info }}
+    </div>
+@endif

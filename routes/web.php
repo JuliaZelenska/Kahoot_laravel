@@ -63,6 +63,10 @@ Route::group(['middleware' => 'auth'], function () {
         });
     });
 
+    Route::post('/play-quiz', [
+        'as' => 'post-play-quiz',
+        'uses' => 'Controller@postPlayQuiz'
+    ]);
     Route::post('/name-quiz', [
         'as' => 'post-create-quiz-name',
         'uses' => 'Controller@postQuizName'

@@ -2,6 +2,8 @@
 
 @section('content')
 
-    quiz_list
+    <div class="btn-group-vertical">
+        @each('partial.quizzes', $quizList, 'quiz')
+    </div>
 
 @endsection('content')
