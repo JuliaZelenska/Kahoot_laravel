@@ -104,7 +104,7 @@ class Controller extends BaseController
         $quizName = $request->input('quiz_name');
         
         $question = new Question();
-        $questions = $question->where('name','=',$quizName)->get();
+        $questions = $question->where('name', '=', $quizName)->get();
         
         return view('play_quiz', ['questions' => $questions]);
     }
@@ -138,4 +138,26 @@ class Controller extends BaseController
 //        dump($data);
     }
     
+    public function getQuiz($quizName)
+    {
+// zapytac baze danych o quiz o podanej nazwie ($quizname)
+//  zwraca widok i znaleziony quiz
+    }
+    
+    public function postCheckQuestion()
+    {
+// przyjmuje id odpowiedzi
+//jesli poprawna -> metoda dodajaca punkty i zwraca true
+//jesli zla -> zwraca false
+    }
+    
+    public function getQuizResult()
+    {
+// zwraca widok i zliczone punkty i dodaje do rankingu nazwe uzytkownika oraz liczbe punktów
+    }
+    
+    public function getRanking()
+    {
+//        zwraca widok wraz z rankingiem
+    }
 }

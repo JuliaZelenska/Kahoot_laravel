@@ -16,3 +16,32 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//get pyrania -> przestawianie odpowiedzi
+
+Route::get('get-quiz', [
+    'uses' => 'Controller@getQuiz',
+    'as' => 'api-get-quiz'
+]);
+
+//sprawdzanie -> liczenie punktow
+
+Route::post('check-question', [
+    'uses' => 'Controller@postCheckQuestion',
+    'as' => 'check-question'
+]);
+
+//route wynik
+
+Route::get('get-result', [
+    'uses' => 'Controller@getQuizResult',
+    'as' => 'get-result'
+]);
+
+//ranking
+
+Route::get('get-ranking', [
+    'uses' => 'Controller@getRanking',
+    'as' => 'get-ranking'
+]);
+
