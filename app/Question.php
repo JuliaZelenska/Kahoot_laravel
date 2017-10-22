@@ -26,4 +26,5 @@ class Question extends Model
     {
 
     }
+    
 }

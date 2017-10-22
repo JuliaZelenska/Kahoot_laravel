@@ -19,10 +19,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //get pyrania -> przestawianie odpowiedzi
 
-Route::get('get-quiz', [
-    'uses' => 'Controller@getQuiz',
-    'as' => 'api-get-quiz'
-]);
+//Route::post('post-quiz', [
+//    'uses' => 'Controller@postQuiz',
+//    'as' => 'api-post-quiz'
+//]);
 
 //sprawdzanie -> liczenie punktow
 

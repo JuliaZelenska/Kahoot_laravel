@@ -54,6 +54,7 @@ class Controller extends BaseController
             'false2'   => $false2,
             'false3'   => $false3,
         ];
+        
         if (!empty($questionResult)) {
             $questionResult->update($data);
             $responseMessage = 'Pytanie ' . $question . ' dodano pomyślnie';
@@ -108,12 +109,7 @@ class Controller extends BaseController
         
         return view('play_quiz', ['questions' => $questions]);
     }
-    
-    public function getPlayQuiz()
-    {
-        return view('play_quiz');
-    }
-    
+
     public function getCreateQuizName()
     {
         \Session::remove('quiz-name');
@@ -138,10 +134,15 @@ class Controller extends BaseController
 //        dump($data);
     }
     
-    public function getQuiz($quizName)
+    public function getQuiz(Request $request, Question $question)
     {
-// zapytac baze danych o quiz o podanej nazwie ($quizname)
-//  zwraca widok i znaleziony quiz
+        $quizName = $request->input('quiz_name');
+        $questionTableQuery = $question->newQuery();
+        $quiz = $questionTableQuery->where('name', '=', $quizName)->get();
+        
+        return $quiz;
+
+// zapytac baze danych o quiz o podanej nazwie ($quizname) i zwraca znaleziony quiz
     }
     
     public function postCheckQuestion()

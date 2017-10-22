@@ -22,9 +22,10 @@ Route::get('/test', [
 ]);
 
 Route::get('/play-quiz', [
-    'as' => 'play-quiz',
-    'uses' => 'Controller@getPlayQuiz',
+    'as' => 'get-play-quiz',
+    'uses' => 'Controller@getQuizList',
 ]);
+
 Route::get('/quiz-list', [
     'as' => 'quiz-list',
     'uses' => 'Controller@getQuizList',
@@ -74,4 +75,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/edit', 'Controller@postUpdate');
 });
 
-
+Route::get('get-quiz', [
+    'uses' => 'Controller@getQuiz',
+    'as' => 'api-get-quiz'
+]);
