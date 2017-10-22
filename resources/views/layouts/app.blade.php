@@ -13,8 +13,15 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    {{--jquerry--}}
+    <script
+            src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+
     <!-- JavaScript -->
     <script src="{{ asset('js/app.js') }}"></script>
+
 </head>
 <body>
 <canvas id="c"></canvas>

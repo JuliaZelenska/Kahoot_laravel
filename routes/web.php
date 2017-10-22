@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 Route::get('/test', [
     'as' => 'test',
-    'uses' => 'Controller@test',
+    'uses' => 'Controller@getQuiz',
 ]);
 
 Route::get('/play-quiz', [
@@ -78,4 +78,14 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('get-quiz', [
     'uses' => 'Controller@getQuiz',
     'as' => 'api-get-quiz'
+]);
+
+Route::get('get-quiz', [
+    'uses' => 'Controller@getQuiz',
+    'as' => 'api-get-quiz'
+]);
+
+Route::post('check-question', [
+    'uses' => 'Controller@postCheckQuestion',
+    'as' => 'api-post-check-question'
 ]);

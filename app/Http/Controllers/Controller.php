@@ -103,13 +103,14 @@ class Controller extends BaseController
     public function postPlayQuiz(Request $request)
     {
         $quizName = $request->input('quiz_name');
+        $request->session()->put('quiz_name', $quizName);
         
         $question = new Question();
         $questions = $question->where('name', '=', $quizName)->get();
         
         return view('play_quiz', ['questions' => $questions]);
     }
-
+    
     public function getCreateQuizName()
     {
         \Session::remove('quiz-name');
@@ -136,17 +137,28 @@ class Controller extends BaseController
     
     public function getQuiz(Request $request, Question $question)
     {
-        $quizName = $request->input('quiz_name');
+        $quizName = $request->session()->get('quiz_name');
         $questionTableQuery = $question->newQuery();
         $quiz = $questionTableQuery->where('name', '=', $quizName)->get();
+        $request->session()->put('quiz', $quiz);
         
         return $quiz;
 
 // zapytac baze danych o quiz o podanej nazwie ($quizname) i zwraca znaleziony quiz
     }
     
-    public function postCheckQuestion()
+    public function postCheckQuestion(Request $request)
     {
+        $currentQuiz = $request->session()->get('quiz');
+        
+        $answer = $request->input('answer');
+        $numberOfQuestion = $request->input('number_of_question');
+        $correctAnswer = $currentQuiz[$numberOfQuestion]->true;
+        if ($answer == $correctAnswer) {
+            return 'true';
+        }
+        
+        return 'false';
 // przyjmuje id odpowiedzi
 //jesli poprawna -> metoda dodajaca punkty i zwraca true
 //jesli zla -> zwraca false

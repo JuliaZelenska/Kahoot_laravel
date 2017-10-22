@@ -2,8 +2,11 @@
 
 @section('content')
 
-    @each('partial.question', $questions, 'question')
-    <button id="btntest">test</button>
+    {{--@each('partial.question', $questions, 'question')--}}
+    <button id="btn-next">NEXT Question</button>
+
+    <div id="question-container"></div>
+
 @endsection('content')
 
 @section('javascript')
