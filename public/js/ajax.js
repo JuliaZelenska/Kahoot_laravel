@@ -99,6 +99,7 @@ function nextQuestion() {
 
 function finishQuiz() {
     console.log("Quiz is over");
+    window.location = "/quiz-list"
 }
 
 $(function () {
@@ -130,13 +131,11 @@ function loadQuestion() {
     if (x !== 0) {
         nextQuestion();
     }
-
-    showQuestion(this.quiz[x], x);
-
-    x++;
     console.log(numberOfQuestions, x);
     if (x === numberOfQuestions) {
         finishQuiz();
     }
+    showQuestion(this.quiz[x], x);
+    x++;
 }
 
