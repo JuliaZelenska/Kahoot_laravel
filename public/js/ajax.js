@@ -64,10 +64,32 @@ $('#btn-next').click(function () {
 function checkAnswer(answer) {
     if (answer === "true") {
         console.log("GOOD!");
+        markAnswer(true);
     } else {
         console.log("Wrong");
+        markAnswer(false);
     }
-    loadQuestion();
+    setTimeout(function () {
+        loadQuestion();
+    }, 1500)
+}
+
+function markAnswer(correctOrNot) {
+    let correctIcon = '<i class="fa fa-check" aria-hidden="true"></i>';
+    let wrongIcon = '<i class="fa fa-times" aria-hidden="true"></i>';
+    let htmlElement;
+    if (true === correctOrNot) {
+        htmlElement = correctIcon;
+    } else {
+        htmlElement = wrongIcon;
+    }
+
+    let e = document.createElement('div');
+    e.innerHTML = htmlElement;
+
+    while (e.firstChild) {
+        questionDiv.appendChild(e.firstChild);
+    }
 }
 
 function nextQuestion() {
