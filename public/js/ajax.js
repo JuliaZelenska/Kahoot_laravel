@@ -3,11 +3,24 @@
  */
 
 function showQuestion(question, numberOfQuestion) {
+
+    let choises = [
+        question.true,
+        question.false1,
+        question.false2,
+        question.false3
+    ];
     showElement(numberOfQuestion, question.question, 'h1');
-    showElement(numberOfQuestion, question.true, 'li');
-    showElement(numberOfQuestion, question.false1, 'li');
-    showElement(numberOfQuestion, question.false2, 'li');
-    showElement(numberOfQuestion, question.false3, 'li');
+
+    // random element
+    let numberOfAnswers = choises.length;
+    for (let i = 0; i < numberOfAnswers; i++) {
+        let rand = Math.floor(Math.random() * choises.length);
+        let item = choises[rand];
+        showElement(numberOfQuestion, item, 'li');
+        let index = choises.indexOf(item);
+        choises.splice(index, 1);
+    }
 }
 
 let questionDiv = document.getElementById('question-container');
@@ -64,16 +77,12 @@ function nextQuestion() {
 
 function finishQuiz() {
     console.log("Quiz is over");
-
 }
 
 $(function () {
     $.ajax({
         url: "get-quiz",
         type: "get",
-        data: {
-            quiz_name: 'Maderfucking'
-        },
         success: function (response) {
             createQuiz(response);
         },
